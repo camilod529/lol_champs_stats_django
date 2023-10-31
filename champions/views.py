@@ -11,9 +11,20 @@ class ChampionViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Champion.objects.all()
 
     def get_queryset(self):
-        name = self.kwargs.get("name")
-        if name:
+        if name := self.kwargs.get("name"):
             champ = Champion.objects.filter(name__contains=name)
             return champ
-
+        if classes := self.kwargs.get("classes"):
+            champ = Champion.objects.filter(classes__contains=classes)
+            return champ
+        if be_price := self.kwargs.get("be_price"):
+            champ = Champion.objects.filter(blue_essence_price__gte=be_price).order_by(
+                "blue_essence_price"
+            )
+            return champ
+        if rp_price := self.kwargs.get("rp_price"):
+            champ = Champion.objects.filter(riot_points_price__gte=rp_price).order_by(
+                "riot_points_price"
+            )
+            return champ
         return super().get_queryset()

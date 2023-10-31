@@ -14,4 +14,19 @@ urlpatterns = [
         views.ChampionViewSet.as_view(actions={"get": "list"}),
         name="champion-detail-by-name",
     ),
+    path(
+        "champions/classes/<str:classes>/",
+        views.ChampionViewSet.as_view(actions={"get": "list"}),
+        name="champion-detail-by-classes",
+    ),
+    path(
+        "champions/price/ea/<int:be_price>/",
+        views.ChampionViewSet.as_view(actions={"get": "list"}),
+        name="champion-detail-by-be-price",
+    ),
+    path(
+        "champions/price/rp/<int:rp_price>/",
+        views.ChampionViewSet.as_view(actions={"get": "list"}),
+        name="champion-detail-by-rp-price",
+    ),
 ]
