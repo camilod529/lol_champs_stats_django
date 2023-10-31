@@ -22,6 +22,9 @@ class Champion(models.Model):
     magic_resistance_per_level = models.DecimalField(max_digits=10, decimal_places=5)
     movement_speed = models.DecimalField(max_digits=20, decimal_places=5)
     atack_range = models.DecimalField(max_digits=20, decimal_places=5)
+    classes = models.CharField(max_length=100)
+    blue_essence_price = models.IntegerField()
+    riot_points_price = models.IntegerField()
 
     def __str__(self):
         return self.name
