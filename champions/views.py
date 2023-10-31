@@ -13,9 +13,7 @@ class ChampionViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         name = self.kwargs.get("name")
         if name:
-            try:
-                champ = Champion.objects.filter(name__iexact=name)
-                return champ
-            except Champion.DoesNotExist:
-                return Response({"detail", f"Campeón con nombre {name}no encontrado"}, status=404)
+            champ = Champion.objects.filter(name__iexact=name)
+            return champ
+
         return super().get_queryset()
