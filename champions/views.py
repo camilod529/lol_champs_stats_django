@@ -13,7 +13,7 @@ class ChampionViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         name = self.kwargs.get("name")
         if name:
-            champ = Champion.objects.filter(name__iexact=name)
+            champ = Champion.objects.filter(name__contains=name)
             return champ
 
         return super().get_queryset()
